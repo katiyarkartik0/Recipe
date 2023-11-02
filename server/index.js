@@ -3,9 +3,13 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const { authRoutes } = require("./routes/auth");
+
 const { verifyToken } = require("./middleware/verifyToken");
+
+const { authRoutes } = require("./routes/auth");
 const { accessTokenRoutes } = require("./routes/accessToken");
+const { recipeRoutes } = require("./routes/recipe");
+
 const routes = express.Router();
 
 dotenv.config();
@@ -21,6 +25,8 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/accessToken",verifyToken,accessTokenRoutes)
+app.use("/api/recipe",verifyToken,recipeRoutes)
+
 
 mongoose
   .connect(process.env.MONGO_URL, {
