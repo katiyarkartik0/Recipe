@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import "./authentication.css"; // Import the CSS file
 
 import Button from "components/Button/Button";
 import LoginForm from "pages/auth/login/LoginForm";
 import SignupForm from "pages/auth/signup/SignupForm";
+
+import "./authentication.css";
 
 const activeButtonStyles = { "background-color": "#17A9FD" };
 const inActiveButtonStyles = { "background-color": "#fff", "color": "black" };

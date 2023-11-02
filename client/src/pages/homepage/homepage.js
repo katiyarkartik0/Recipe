@@ -1,10 +1,14 @@
 import Button from "components/Button/Button";
 import { useSelector } from "react-redux";
-import { getAccessToken, getUserData } from "helpers/selector";
-import "./homepage.css";
 import { useNavigate } from "react-router-dom";
-import UnauthorizedPage from "pages/unauthorizedPage/UnauthorizedPage";
+
 import { destroyAccessToken } from "api/accessToken";
+
+import UnauthorizedPage from "pages/unauthorizedPage/UnauthorizedPage";
+
+import { getAccessToken, getUserData } from "helpers/selector";
+
+import "./homepage.css";
 
 const HomePage = () => {
   const navigate = useNavigate();

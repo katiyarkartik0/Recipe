@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { setLogin } from "store/slices/auth";
 
 import { userLogin } from "api/auth";
 
 import Button from "components/Button/Button";
+
 import { Loader } from "utils/Loader/Loader";
 import { fieldValidation } from "helpers/validator";
 
 import "./LoginForm.css";
-import { setLogin } from "store/slices/auth";
 
 const defaultUserCredentials = {
   email: "",

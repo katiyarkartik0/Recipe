@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setToast } from "store/slices/toast";
+
 import { userSignup } from "api/auth";
 
-import "./SignupForm.css";
 import Button from "components/Button/Button";
-import { useDispatch } from "react-redux";
-// import { setToast } from "store/slices/toastSlice";
+
 import { fieldValidation } from "helpers/validator";
 import { Loader } from "utils/Loader/Loader";
+
+import "./SignupForm.css";
 
 const defaultUserData = {
   name: "",
@@ -49,26 +52,25 @@ const SignupForm = () => {
     await userSignup({ name, email, password })
       .then(async (res) => {
         if (res.ok) {
-          // dispatch(
-          //   setToast({
-          //     status: "success",
-          //     displayMessage:
-          //       "congratulations! your account has been created. Try signing in",
-          //   })
-          // );
+          dispatch(
+            setToast({
+              status: "success",
+              displayMessage:
+                "congratulations! your account has been created. Try signing in",
+            })
+          );
           setUserData(defaultUserData);
         } else if (!res.ok) {
           const { msg } = await res.json();
-          console.log(msg)
-          // dispatch(setToast({ status: "failure", displayMessage: msg }));
+          console.log(msg);
+          dispatch(setToast({ status: "failure", displayMessage: msg }));
           return;
         }
       })
       .catch((err) =>
-      {}
-        // dispatch(
-        //   setToast({ status: "failure", displayMessage: JSON.stringify(err) })
-        // )
+        dispatch(
+          setToast({ status: "failure", displayMessage: JSON.stringify(err) })
+        )
       );
     setErrors(defaultError);
     setIsLoading(false);
