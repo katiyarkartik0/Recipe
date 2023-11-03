@@ -15,3 +15,39 @@ export const getSavedRecipes = async ({ accessToken }) =>
     method: "GET",
     headers: { authorization: `OAT ${accessToken}` },
   });
+
+export const getIngredients = async ({ accessToken, recipeId }) =>
+  await fetch(`${ENDPOINT}/api/recipe/ingredients?recipeId=${recipeId}`, {
+    method: "GET",
+    headers: { authorization: `OAT ${accessToken}` },
+  });
+
+export const getInstructions = async ({ accessToken, recipeId }) =>
+  await fetch(`${ENDPOINT}/api/recipe/instructions?recipeId=${recipeId}`, {
+    method: "GET",
+    headers: { authorization: `OAT ${accessToken}` },
+  });
+
+export const getNutritionalInfo = async ({ accessToken, recipeId }) =>
+  await fetch(`${ENDPOINT}/api/recipe/nutritionalInfo?recipeId=${recipeId}`, {
+    method: "GET",
+    headers: { authorization: `OAT ${accessToken}` },
+  });
+
+export const saveRecipe = async ({ recipeInfo, accessToken }) =>
+  await fetch(`${ENDPOINT}/api/recipe/save`, {
+    method: "POST",
+    headers: {
+      authorization: `OAT ${accessToken}`,
+      headers: { "Content-Type": "application/json" },
+    },
+    body: JSON.stringify(recipeInfo),
+  });
+
+export const deleteRecipe = async ({ recipeId, accessToken }) =>
+  await fetch(`${ENDPOINT}/api/recipe/save?recipeId=${recipeId}`, {
+    method: "DELETE",
+    headers: {
+      authorization: `OAT ${accessToken}`,
+    },
+  });

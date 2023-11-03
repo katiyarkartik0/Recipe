@@ -10,40 +10,20 @@
 }
 
 /* Responsive styles for the product image */
-img {
+.product-image {
   max-width: 100%;
   height: auto;
 }
 
 /* Responsive styles for the product title */
-h1 {
+.product-title {
   font-size: 1.5rem;
-}
-
-/* Responsive styles for the button container */
-.button-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-/* Adjust the button styles for responsiveness */
-button {
-  margin: 10px;
-  padding: 10px 20px;
-  font-size: 1rem;
 }
 
 /* Media query for small screens (e.g., mobile) */
 @media (max-width: 768px) {
   /* Reduce font size for smaller screens */
-  h1 {
+  .product-title {
     font-size: 1.2rem;
-  }
-
-  /* Adjust button font size and padding for smaller screens */
-  button {
-    font-size: 0.9rem;
-    padding: 8px 16px;
   }
 }
