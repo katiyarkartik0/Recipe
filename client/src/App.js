@@ -16,8 +16,21 @@ function App() {
           <Route path="/" element={<AuthenticationPage />}></Route>
           <Route path="/home" element={<HomePage />}></Route>
           <Route path="/recipes" element={<Recipes />}></Route>
-          <Route path="recipes/:recipeId" element={<RecipeDetailPage />}></Route>
-          <Route path="*" element={<UnauthorizedPage />} />
+          <Route
+            path="recipes/:recipeId"
+            element={<RecipeDetailPage />}
+          ></Route>
+          <Route
+            path="*"
+            element={
+              <UnauthorizedPage
+                path={"/"}
+                displayMessage={
+                  "You are not authorized to access this page. Please log in to continue."
+                }
+              />
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>
