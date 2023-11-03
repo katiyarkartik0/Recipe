@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Search.css"; // Import your CSS file
 import { PREFERENCES } from "helpers/constants";
+import Button from "components/Button/Button";
 
 const Search = () => {
   const [preferences, setPreferences] = useState({
@@ -23,27 +24,31 @@ const Search = () => {
   };
 
   return (
-    <div className="card">
-      {PREFERENCES.map(({ name: preferenceName, options }) => {
-        return (
-          <>
-            <h2 className="card-heading">{preferenceName}</h2>
-            <div className="tags">
-              {options.map(({ name: optionName, value }) => {
-                return (
-                  <button
-                    className="tag"
-                    onClick={() => handleClick({ preferenceName, value })}
-                  >
-                    {optionName}
-                  </button>
-                );
-              })}
+    <>
+      <div className="card">
+        {PREFERENCES.map(({ name: preferenceName, options }) => {
+          return (
+            <div key={preferenceName}>
+              <h2 className="card-heading">{preferenceName}</h2>
+              <div className="tags">
+                {options.map(({ name: optionName, value }) => {
+                  return (
+                    <button
+                      key={value}
+                      className="tag"
+                      onClick={() => handleClick({ preferenceName, value })}
+                    >
+                      {optionName}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-          </>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
+      <Button text={"Get Recipes"} />
+    </>
   );
 };
 
