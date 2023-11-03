@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import Recipe from "components/Recipe/Recipe";
 
@@ -8,10 +9,23 @@ const Recipes = () => {
   const {
     recipes: { results = [] },
   } = useSelector(getRecipes);
+
+  const navigate = useNavigate();
+
+  console.log(results);
+  const handleClick = ({ id }) => {
+    navigate(`/recipes/${id}`);
+  };
   return (
     <>
-      {results.map(({ image, title }) => {
-        return <Recipe imageUrl={image} title={title} />;
+      {results.map(({ id, image, title }) => {
+        return (
+          <Recipe
+            imageUrl={image}
+            title={title}
+            onClickEvent={() => handleClick({ id })}
+          />
+        );
       })}
     </>
   );

@@ -1,16 +1,19 @@
-import React from 'react';
-import './Recipe.css'; // Import your CSS file for styling
+import React from "react";
 
-const Recipe = ({ imageUrl, title }) => {
+import "./Recipe.css";
+
+const defaultFunction = () => {};
+
+const Recipe = ({ imageUrl, title, onClickEvent = defaultFunction }) => {
   return (
-    <div className="card">
+    <div className="card" onClick={onClickEvent}>
       <img src={imageUrl} alt={title} className="card-image" />
       <h3 className="card-title">{title}</h3>
       <div className="button-container">
-        <button className="card-button">Button 1</button>
-        <button className="card-button">Button 2</button>
-        <button className="card-button">Button 3</button>
-        <button className="card-button">Button 3</button>
+        <button className="card-button">Ingredients</button>
+        <button className="card-button">Instructions</button>
+        <button className="card-button">Nutrition</button>
+        <button className="card-button">Save</button>
       </div>
     </div>
   );
