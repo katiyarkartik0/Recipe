@@ -1,18 +1,21 @@
-import Button from "components/Button/Button";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setToast } from "store/slices/toast";
 
 import { destroyAccessToken } from "api/accessToken";
+
+import Search from "components/Search/Seacrh";
+import Button from "components/Button/Button";
+import Recipe from "components/Recipe/Recipe";
+
+import { getSavedRecipes } from "api/recipe";
 
 import UnauthorizedPage from "pages/unauthorizedPage/UnauthorizedPage";
 
 import { getAccessToken, getUserData } from "helpers/selector";
 
 import "./homepage.css";
-import Search from "components/Serach/Seacrh";
-import { useEffect, useState } from "react";
-import { getSavedRecipes } from "api/recipe";
-import { setToast } from "store/slices/toast";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -41,10 +44,10 @@ const HomePage = () => {
         );
       }
     };
-    fetchSavedRecipes();
+    // fetchSavedRecipes();
   }, []);
 
-  console.log(savedRecipes)
+  console.log(savedRecipes);
   if (accessToken) {
     return (
       <div className="App">
@@ -58,6 +61,14 @@ const HomePage = () => {
         <div>
           <Search />
         </div>
+        <hr></hr>
+        <h3>Saved Recipes</h3>
+        <Recipe
+          title={
+            "What to make for dinner tonight?? Bruschetta Style Pork & Pasta"
+          }
+          imageUrl={"https://spoonacular.com/recipeImages/715538-312x231.jpg"}
+        />
         <br></br>
       </div>
     );

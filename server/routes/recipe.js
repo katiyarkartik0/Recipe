@@ -14,7 +14,7 @@ const {
 recipeRoutes.use(bodyParser.urlencoded({ extended: false }));
 recipeRoutes.use(bodyParser.json());
 
-recipeRoutes.get("/recipes", getRecipes);
+recipeRoutes.post("/recipes", getRecipes);
 recipeRoutes.get("/ingredients", getIngredients);
 recipeRoutes.get("/nutritionalInfo", getNutritionalInfo);
 recipeRoutes.get("/instructions",getInstructions)

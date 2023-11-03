@@ -1,9 +1,22 @@
 import React, { useState } from "react";
-import "./Search.css"; // Import your CSS file
-import { PREFERENCES } from "helpers/constants";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setRcipes } from "store/slices/recipes";
+import { setToast } from "store/slices/toast";
+
 import Button from "components/Button/Button";
 
+import { getRecipes } from "api/recipe";
+
+import { getAccessToken } from "helpers/selector";
+import { PREFERENCES } from "helpers/constants";
+
+import "./Search.css";
+
 const Search = () => {
+  const accessToken = useSelector(getAccessToken);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [preferences, setPreferences] = useState({
     diet: [],
     intolerances: [],
@@ -23,6 +36,23 @@ const Search = () => {
     }
   };
 
+  const handleSearch = async () => {
+    try {
+      console.log(preferences);
+      const response = await getRecipes({ accessToken, preferences });
+
+      const recipes = await response.json();
+      dispatch(setRcipes({ recipes }));
+      localStorage.setItem("recipes", JSON.stringify(recipes));
+      navigate("/recipes");
+    } catch (error) {
+      console.log(error);
+      dispatch(
+        setToast({ status: "failure", displayMessage: JSON.stringify(error) })
+      );
+    }
+  };
+
   return (
     <>
       <div className="card">
@@ -32,10 +62,12 @@ const Search = () => {
               <h2 className="card-heading">{preferenceName}</h2>
               <div className="tags">
                 {options.map(({ name: optionName, value }) => {
+                  const isOptionIncluded =
+                    preferences[preferenceName].includes(value);
                   return (
                     <button
                       key={value}
-                      className="tag"
+                      className={`${isOptionIncluded ? "tag-included" : "tag"}`}
                       onClick={() => handleClick({ preferenceName, value })}
                     >
                       {optionName}
@@ -47,7 +79,7 @@ const Search = () => {
           );
         })}
       </div>
-      <Button text={"Get Recipes"} />
+      <Button text={"Get Recipes"} onClickEvent={handleSearch} />
     </>
   );
 };
