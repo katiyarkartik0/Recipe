@@ -11,6 +11,7 @@ import { Loader } from "utils/Loader/Loader";
 import { fieldValidation } from "helpers/validator";
 
 import "./LoginForm.css";
+import { setToast } from "store/slices/toast";
 
 const defaultUserCredentials = {
   email: "",
@@ -57,12 +58,13 @@ const LoginForm = () => {
         }
         if (!res.ok) {
           const { msg } = await res.json();
-          alert(msg)
+          dispatch(setToast({ status: "failure", displayMessage: msg }));
         }
       })
       .catch((error) => {
-        alert(JSON.stringify(error))
-      });
+        dispatch(
+          setToast({ status: "failure", displayMessage: JSON.stringify(err) })
+        )      });
     setErrors(defaultError);
     setIsLoading(false);
   };
