@@ -20,6 +20,9 @@
   font-size: 1.5rem;
 }
 
+table, th, td {
+  border: 1px solid black;
+}
 /* Media query for small screens (e.g., mobile) */
 @media (max-width: 768px) {
   /* Reduce font size for smaller screens */

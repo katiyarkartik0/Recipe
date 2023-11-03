@@ -44,7 +44,7 @@ const fetchInstructions = async ({ recipeId }) => {
 const fetchNutritionalInfo = async ({ recipeId }) => {
   const parameters = `apiKey=${apiKey}`;
   const response = await fetch(
-    `${SPOONACULAR_API_ENDPOINT}/recipes/${recipeId}/nutritionWidget.json${parameters}`,
+    `${SPOONACULAR_API_ENDPOINT}/recipes/${recipeId}/nutritionWidget.json?${parameters}`,
     { method: "GET" }
   );
   return await response.json();

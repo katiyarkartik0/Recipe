@@ -23,7 +23,7 @@ const RecipeDetailPage = () => {
   const { id, image, title } = recipe;
   return (
     <>
-      <RecipeDetails imageUrl={image} title={title} />
+      <RecipeDetails id={id} imageUrl={image} title={title} />
     </>
   );
 };
