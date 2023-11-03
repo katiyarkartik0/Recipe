@@ -29,3 +29,7 @@
   margin-right: 8px;
   margin-bottom: 8px;
 }
+
+.tag:hover {
+  background-color: #128c7e;
+}
