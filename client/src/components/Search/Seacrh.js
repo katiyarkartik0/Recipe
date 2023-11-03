@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setRcipes } from "store/slices/recipes";
+import { setRecipes } from "store/slices/recipes";
 import { setToast } from "store/slices/toast";
 
 import Button from "components/Button/Button";
 
 import { getRecipes } from "api/recipe";
 
-import { getAccessToken } from "helpers/selector";
+import { selectAccessToken } from "helpers/selector";
 import { PREFERENCES } from "helpers/constants";
 
 import "./Search.css";
 
 const Search = () => {
-  const accessToken = useSelector(getAccessToken);
+  const accessToken = useSelector(selectAccessToken);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [preferences, setPreferences] = useState({
@@ -42,7 +42,7 @@ const Search = () => {
       const response = await getRecipes({ accessToken, preferences });
 
       const recipes = await response.json();
-      dispatch(setRcipes({ recipes }));
+      dispatch(setRecipes({ recipes }));
       localStorage.setItem("recipes", JSON.stringify(recipes));
       navigate("/recipes");
     } catch (error) {

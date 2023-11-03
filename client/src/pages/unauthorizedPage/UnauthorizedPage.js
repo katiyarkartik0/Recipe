@@ -1,8 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import "./UnauthorizedPage.css";
 import Button from "components/Button/Button";
+
+import "./UnauthorizedPage.css";
 
 const style = {
   width: "50%",

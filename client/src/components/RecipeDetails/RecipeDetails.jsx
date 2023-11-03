@@ -8,7 +8,7 @@ import {
   getNutritionalInfo,
 } from "api/recipe";
 import { useDispatch, useSelector } from "react-redux";
-import { getAccessToken } from "helpers/selector";
+import { selectAccessToken } from "helpers/selector";
 import Instruction from "components/Instruction/Instruction";
 import Nutrition from "components/Nutrition/Nutrition";
 import Ingredient from "components/Ingredient/Ingredient";
@@ -34,7 +34,7 @@ const RecipeDetails = ({ id, imageUrl, title }) => {
     ingredients: false,
   });
 
-  const accessToken = useSelector(getAccessToken);
+  const accessToken = useSelector(selectAccessToken);
   const dispatch = useDispatch();
 
   const fetchInstructions = useCallback(async () => {

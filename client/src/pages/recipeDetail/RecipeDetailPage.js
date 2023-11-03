@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import RecipeDetails from "components/RecipeDetails/RecipeDetails";
 
-import { getRecipes } from "helpers/selector";
+import { selectRecipes } from "helpers/selector";
 import UnauthorizedPage from "pages/unauthorizedPage/UnauthorizedPage";
 
 const RecipeDetailPage = () => {
@@ -11,7 +11,7 @@ const RecipeDetailPage = () => {
 
   const {
     recipes: { results = [] },
-  } = useSelector(getRecipes);
+  } = useSelector(selectRecipes);
 
   let recipe;
   for (const result of results) {

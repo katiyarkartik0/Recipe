@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setToast } from "store/slices/toast";
+import { setSavedRecipes } from "store/slices/recipes";
 
 import { destroyAccessToken } from "api/accessToken";
 
@@ -13,15 +14,19 @@ import { getSavedRecipes } from "api/recipe";
 
 import UnauthorizedPage from "pages/unauthorizedPage/UnauthorizedPage";
 
-import { getAccessToken, getUserData } from "helpers/selector";
+import {
+  selectAccessToken,
+  selectSavedRecipes,
+  selectUserData,
+} from "helpers/selector";
 
 import "./homepage.css";
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const userData = useSelector(getUserData);
-  const accessToken = useSelector(getAccessToken);
-  const [savedRecipes, setSavedRecipes] = useState([]);
+  const userData = useSelector(selectUserData);
+  const accessToken = useSelector(selectAccessToken);
+  const savedRecipes = useSelector(selectSavedRecipes);
   const dispatch = useDispatch();
 
   const handleLogout = async () => {
@@ -35,8 +40,8 @@ const HomePage = () => {
     const fetchSavedRecipes = async () => {
       try {
         await getSavedRecipes({ accessToken }).then(async (res) => {
-          const response = await res.json();
-          setSavedRecipes(response);
+          const { savedRecipes } = await res.json();
+          dispatch(setSavedRecipes(savedRecipes));
         });
       } catch (error) {
         dispatch(

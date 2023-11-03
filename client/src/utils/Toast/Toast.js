@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import "./Toast.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getToastContent } from "helpers/selector";
 import { setToast } from "store/slices/toast";
 
+import { selectToastContent } from "helpers/selector";
+
+import "./Toast.css";
+
 function Toast() {
-  const { toastStatus, toastMessage } = useSelector(getToastContent);
+  const { toastStatus, toastMessage } = useSelector(selectToastContent);
   const [showToast, setShowToast] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {

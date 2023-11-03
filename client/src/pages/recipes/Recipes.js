@@ -3,12 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 import Recipe from "components/Recipe/Recipe";
 
-import { getRecipes } from "helpers/selector";
+import { selectRecipes } from "helpers/selector";
 
 const Recipes = () => {
-  const {
-    recipes: { results = [] },
-  } = useSelector(getRecipes);
+  const { recipes: { results = [] } = {} } = useSelector(selectRecipes);
 
   const navigate = useNavigate();
 
@@ -18,6 +16,7 @@ const Recipes = () => {
   };
   return (
     <>
+      <h3>Based on your preferences, we have...</h3>
       {results.map(({ id, image, title }) => {
         return (
           <Recipe
