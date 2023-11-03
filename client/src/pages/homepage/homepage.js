@@ -9,6 +9,7 @@ import UnauthorizedPage from "pages/unauthorizedPage/UnauthorizedPage";
 import { getAccessToken, getUserData } from "helpers/selector";
 
 import "./homepage.css";
+import Search from "components/Serach/Seacrh";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -16,6 +17,8 @@ const HomePage = () => {
   const accessToken = useSelector(getAccessToken);
   const handleLogout = async() => {
     await destroyAccessToken({accessToken})
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("userData");
     navigate("/");
   };
   if (accessToken) {
@@ -28,6 +31,7 @@ const HomePage = () => {
             onClickEvent={handleLogout}
           />
         </div>
+        <div><Search/></div>
         <br></br>
       </div>
     );
