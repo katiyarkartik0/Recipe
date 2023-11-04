@@ -53,8 +53,8 @@ const LoginForm = () => {
         if (res.ok) {
           const { userData, accessToken, msg } = await res.json();
           dispatch(setLogin({ accessToken, userData }));
-          localStorage.setItem('accessToken', JSON.stringify(accessToken));
-          localStorage.setItem('userData', JSON.stringify(userData));
+          localStorage.setItem("accessToken", JSON.stringify(accessToken));
+          localStorage.setItem("userData", JSON.stringify(userData));
           navigate("/home");
           return;
         }
@@ -66,7 +66,8 @@ const LoginForm = () => {
       .catch((error) => {
         dispatch(
           setToast({ status: "failure", displayMessage: JSON.stringify(error) })
-        )      });
+        );
+      });
     setErrors(defaultError);
     setIsLoading(false);
   };

@@ -17,9 +17,12 @@ const Recipes = () => {
   return (
     <>
       <h3>Based on your preferences, we have...</h3>
-      {results.map(({ id, image, title }) => {
+      {results.map(({ id, image, title, imageType }) => {
         return (
           <Recipe
+            key={id}
+            imageType={imageType}
+            id={id}
             imageUrl={image}
             title={title}
             onClickEvent={() => handleClick({ id })}

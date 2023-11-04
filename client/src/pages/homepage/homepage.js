@@ -31,8 +31,7 @@ const HomePage = () => {
 
   const handleLogout = async () => {
     await destroyAccessToken({ accessToken });
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("userData");
+    localStorage.clear();
     navigate("/");
   };
 
@@ -41,7 +40,8 @@ const HomePage = () => {
       try {
         await getSavedRecipes({ accessToken }).then(async (res) => {
           const { savedRecipes } = await res.json();
-          dispatch(setSavedRecipes(savedRecipes));
+          dispatch(setSavedRecipes({ savedRecipes }));
+          localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
         });
       } catch (error) {
         dispatch(
@@ -49,7 +49,7 @@ const HomePage = () => {
         );
       }
     };
-    // fetchSavedRecipes();
+    fetchSavedRecipes();
   }, []);
 
   console.log(savedRecipes);
@@ -69,11 +69,22 @@ const HomePage = () => {
         <hr></hr>
         <h3>Saved Recipes</h3>
         <Recipe
-          title={
-            "What to make for dinner tonight?? Bruschetta Style Pork & Pasta"
-          }
-          imageUrl={"https://spoonacular.com/recipeImages/715538-312x231.jpg"}
-        />
+              imageType={"jpg"}
+              id={"716429"}
+              title={"Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs"}
+              imageUrl={"https://spoonacular.com/recipeImages/716429-312x231.jpg"}
+            />
+        {/* {savedRecipes.map(({ id, title, image, imageType }) => {
+          return (
+            <Recipe
+              imageType={imageType}
+              id={id}
+              title={title}
+              imageUrl={image}
+            />
+          );
+        })} */}
+
         <br></br>
       </div>
     );

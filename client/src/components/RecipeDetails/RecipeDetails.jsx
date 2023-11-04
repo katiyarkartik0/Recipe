@@ -143,13 +143,16 @@ const RecipeDetails = ({ id, imageUrl, title }) => {
         <h2>Instructions</h2>
         {isLoading.instructions && <Loader />}
         {!isLoading.instructions &&
-          instructions.map(({ ingredients = [], equipment = [], step }) => (
-            <Instruction
-              ingredients={ingredients}
-              equipment={equipment}
-              step={step}
-            />
-          ))}
+          instructions.map(
+            ({ ingredients = [], equipment = [], step }, idx) => (
+              <Instruction
+                key={idx}
+                ingredients={ingredients}
+                equipment={equipment}
+                step={step}
+              />
+            )
+          )}
       </div>
       <div className="container">
         <h2>Nutrients</h2>
@@ -160,11 +163,13 @@ const RecipeDetails = ({ id, imageUrl, title }) => {
             <th>Amount</th>
             <th>Percent of Daily Needs</th>
           </tr>
-          {isLoading.nutritionalInfo && <Loader />}
-          {!isLoading.nutritionalInfo &&
-            nutritionalInfo.map((nutrient) => (
-              <Nutrition nutrient={nutrient} />
-            ))}
+          <tbody>
+            {isLoading.nutritionalInfo && <Loader />}
+            {!isLoading.nutritionalInfo &&
+              nutritionalInfo.map((nutrient, idx) => (
+                <Nutrition key={idx} nutrient={nutrient} />
+              ))}
+          </tbody>
         </table>
       </div>
       <div className="container">
@@ -175,11 +180,13 @@ const RecipeDetails = ({ id, imageUrl, title }) => {
             <th>Units</th>
             <th>Amount</th>
           </tr>
-          {isLoading.ingredients && <Loader />}
-          {!isLoading.ingredients &&
-            ingredients.map((ingredient) => (
-              <Ingredient ingredient={ingredient} />
-            ))}
+          <tbody>
+            {isLoading.ingredients && <Loader />}
+            {!isLoading.ingredients &&
+              ingredients.map((ingredient, idx) => (
+                <Ingredient key={idx} ingredient={ingredient} />
+              ))}
+          </tbody>
         </table>
       </div>
     </div>

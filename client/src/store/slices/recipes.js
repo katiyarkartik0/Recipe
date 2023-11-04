@@ -1,9 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const recipes = localStorage.getItem("recipes")
+  ? JSON.parse(localStorage.getItem("recipes"))
+  : [];
+const preferences = localStorage.getItem("preferences")
+  ? JSON.parse(localStorage.getItem("preferences"))
+  : [];
+const savedRecipes = localStorage.getItem("savedRecipes")
+  ? JSON.parse(localStorage.getItem("savedRecipes"))
+  : [];
+  
 const initialState = {
-  recipes: JSON.parse(localStorage.getItem("recipes")) || [],
-  preferences: JSON.parse(localStorage.getItem("preferences")) || [],
-  savedRecipes: [],
+  recipes,
+  preferences,
+  savedRecipes,
 };
 
 const recipesSlice = createSlice({
@@ -19,16 +29,16 @@ const recipesSlice = createSlice({
       state.preferences = preferences;
     },
     setSavedRecipes: (state, action) => {
-      const { recipes } = action.payload;
-      state.savedRecipes = recipes;
+      const { savedRecipes } = action.payload;
+      state.savedRecipes = savedRecipes;
     },
     setSaveRecipe: (state, action) => {
       const { recipe } = action.payload;
       state.savedRecipes.push(recipe);
     },
     setDeleteSavedRecipe: (state, action) => {
-      const { recipe } = action.payload;
-      state.savedRecipes = state.savedRecipes.filter(({ id }) => recipe.id);
+      const { recipeId } = action.payload;
+      state.savedRecipes = state.savedRecipes.filter(({ id }) => recipeId);
     },
   },
 });

@@ -5,7 +5,7 @@ export const getRecipes = async ({ accessToken, preferences }) =>
     method: "POST",
     headers: {
       authorization: `OAT ${accessToken}`,
-      headers: { "Content-Type": "application/json" },
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(preferences),
   });
@@ -34,18 +34,19 @@ export const getNutritionalInfo = async ({ accessToken, recipeId }) =>
     headers: { authorization: `OAT ${accessToken}` },
   });
 
-export const saveRecipe = async ({ recipeInfo, accessToken }) =>
-  await fetch(`${ENDPOINT}/api/recipe/save`, {
+export const saveRecipe = async ({ recipeInfo, accessToken }) => {
+  return await fetch(`${ENDPOINT}/api/recipe/save`, {
     method: "POST",
     headers: {
       authorization: `OAT ${accessToken}`,
-      headers: { "Content-Type": "application/json" },
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(recipeInfo),
   });
+};
 
 export const deleteRecipe = async ({ recipeId, accessToken }) =>
-  await fetch(`${ENDPOINT}/api/recipe/save?recipeId=${recipeId}`, {
+  await fetch(`${ENDPOINT}/api/recipe/delete?recipeId=${recipeId}`, {
     method: "DELETE",
     headers: {
       authorization: `OAT ${accessToken}`,
