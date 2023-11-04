@@ -7,11 +7,13 @@ import store from "./store";
 import Toast from "utils/Toast/Toast";
 
 import "./index.css";
+import Footer from "components/Footer/Footer";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <Toast/>
+    <Toast />
     <App />
+    <Footer />
   </Provider>
 );
