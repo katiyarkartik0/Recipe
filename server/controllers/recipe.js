@@ -59,18 +59,18 @@ const getNutritionalInfo = async (req, res) => {
   }
 };
 
-const getInstructions = async(req,res)=>{
-    if (req.verified == false) {
-        return res.status(403).json({ msg: req.msg });
-      }
-      const { recipeId } = req.query;
-      try {
-        const instructions = await fetchInstructions({ recipeId });
-        return res.status(200).json({ instructions });
-      } catch (error) {
-        return res.status(500).json({ msg: JSON.stringify(error) });
-      }
-}
+const getInstructions = async (req, res) => {
+  if (req.verified == false) {
+    return res.status(403).json({ msg: req.msg });
+  }
+  const { recipeId } = req.query;
+  try {
+    const instructions = await fetchInstructions({ recipeId });
+    return res.status(200).json({ instructions });
+  } catch (error) {
+    return res.status(500).json({ msg: JSON.stringify(error) });
+  }
+};
 
 const saveRecipe = async (req, res) => {
   if (req.verified == false) {
@@ -107,16 +107,15 @@ const deleteRecipe = async (req, res) => {
   }
   const { recipeId } = req.query;
   if (!recipeId) {
-    return res
-      .status(400)
-      .json({ msg: "please provide a valid Task Signature" });
+    return res.status(400).json({ msg: "please provide a valid recipe id" });
   }
   const userId = req.id;
   try {
-    await Recipe.deleteOne({ _id:recipeId });
+    const { _id } = await Recipe.findOne({ spoonacularRecipeId: recipeId });
+    await Recipe.deleteOne({ _id });
     await User.findOneAndUpdate(
       { _id: userId },
-      { $pull: { savedRecipes: recipeId } }
+      { $pull: { savedRecipes: _id } }
     );
     return res.status(200).json({ msg: "Recipe deleted successfully" });
   } catch (error) {

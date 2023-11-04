@@ -9,7 +9,7 @@ const preferences = localStorage.getItem("preferences")
 const savedRecipes = localStorage.getItem("savedRecipes")
   ? JSON.parse(localStorage.getItem("savedRecipes"))
   : [];
-  
+
 const initialState = {
   recipes,
   preferences,
@@ -38,7 +38,10 @@ const recipesSlice = createSlice({
     },
     setDeleteSavedRecipe: (state, action) => {
       const { recipeId } = action.payload;
-      state.savedRecipes = state.savedRecipes.filter(({ id }) => recipeId);
+      state.savedRecipes = state.savedRecipes.filter(
+        ({ spoonacularRecipeId }) =>
+          Number(spoonacularRecipeId) !== Number(recipeId)
+      );
     },
   },
 });

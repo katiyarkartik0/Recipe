@@ -13,6 +13,7 @@ import Instruction from "components/Instruction/Instruction";
 import Nutrition from "components/Nutrition/Nutrition";
 import Ingredient from "components/Ingredient/Ingredient";
 import { Loader } from "utils/Loader/Loader";
+import RecipeButton from "components/RecipeButton/RecipeButton";
 
 const LOCAL_STORAGE_INSTRUCTIONS_KEY = ({ id: recipeId }) =>
   `${recipeId}-instructions`;
@@ -23,7 +24,12 @@ const LOCAL_STORAGE_NUTRITIONAL_INFO_KEY = ({ id: recipeId }) =>
 const LOCAL_STORAGE_INGREDIENTS_KEY = ({ id: recipeId }) =>
   `${recipeId}-ingredients`;
 
-const RecipeDetails = ({ id, imageUrl, title }) => {
+const RecipeDetails = ({
+  id = "",
+  imageUrl = "",
+  title = "",
+  imageType = "",
+}) => {
   const [instructions, setInstructions] = useState([]);
   const [nutritionalInfo, setNutritionalInfo] = useState([]);
   const [ingredients, setIngredients] = useState([]);
@@ -140,6 +146,12 @@ const RecipeDetails = ({ id, imageUrl, title }) => {
       <img className="product-image" src={imageUrl} alt={title} />
       <h1 className="product-title">{title}</h1>
       <div className="container">
+        <RecipeButton
+          recipeId={id}
+          imageUrl={imageUrl}
+          title={title}
+          imageType={imageType}
+        />{" "}
         <h2>Instructions</h2>
         {isLoading.instructions && <Loader />}
         {!isLoading.instructions &&

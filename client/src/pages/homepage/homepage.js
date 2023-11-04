@@ -43,6 +43,7 @@ const HomePage = () => {
           dispatch(setSavedRecipes({ savedRecipes }));
           localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
         });
+        localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
       } catch (error) {
         dispatch(
           setToast({ status: "failure", displayMessage: JSON.stringify(error) })
@@ -51,7 +52,6 @@ const HomePage = () => {
     };
     fetchSavedRecipes();
   }, []);
-
   console.log(savedRecipes);
   if (accessToken) {
     return (
@@ -68,22 +68,22 @@ const HomePage = () => {
         </div>
         <hr></hr>
         <h3>Saved Recipes</h3>
-        <Recipe
+        {/* <Recipe
               imageType={"jpg"}
               id={"716429"}
               title={"Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs"}
               imageUrl={"https://spoonacular.com/recipeImages/716429-312x231.jpg"}
-            />
-        {/* {savedRecipes.map(({ id, title, image, imageType }) => {
+            /> */}
+        {savedRecipes.map(({ spoonacularRecipeId, title, image, imageType }) => {
           return (
             <Recipe
               imageType={imageType}
-              id={id}
               title={title}
               imageUrl={image}
+              id={spoonacularRecipeId}
             />
           );
-        })} */}
+        })}
 
         <br></br>
       </div>
