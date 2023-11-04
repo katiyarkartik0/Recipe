@@ -2,12 +2,12 @@ const Token = require("../models/accessToken");
 
 const isTokenPresent = async ({ token }) => !!(await Token.findOne({ token }));
 
-const verifyToken = (req, res, next) => {
+const verifyToken = async (req, res, next) => {
   let token = req.header("authorization");
 
   if (token && token.split(" ")[0] === "OAT") {
     const accessToken = token.split(" ")[1];
-    if (isTokenPresent({ accessToken })) {
+    if (await isTokenPresent({ token: accessToken })) {
       const userId = token.split(" ")[2];
       req.id = userId;
       req.verified = true;

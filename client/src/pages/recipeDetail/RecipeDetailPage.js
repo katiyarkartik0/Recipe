@@ -21,8 +21,15 @@ const RecipeDetailPage = () => {
     }
   }
   if (recipe) {
-    const { id, image, title } = recipe;
-    return <RecipeDetails id={id} imageUrl={image} title={title} />;
+    const { id, image, title, imageType } = recipe;
+    return (
+      <RecipeDetails
+        id={id}
+        imageUrl={image}
+        title={title}
+        imageType={imageType}
+      />
+    );
   } else {
     return (
       <UnauthorizedPage

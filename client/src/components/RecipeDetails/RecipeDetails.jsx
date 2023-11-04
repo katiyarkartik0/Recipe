@@ -137,10 +137,6 @@ const RecipeDetails = ({
     fetchIngredients();
   }, []);
 
-  const handleButton1Click = () => {
-    // Define the behavior for button 1 here
-  };
-
   return (
     <div className="product-detail">
       <img className="product-image" src={imageUrl} alt={title} />
