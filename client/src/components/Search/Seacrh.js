@@ -38,7 +38,6 @@ const Search = () => {
 
   const handleSearch = async () => {
     try {
-      console.log(preferences);
       const response = await getRecipes({ accessToken, preferences });
 
       const recipes = await response.json();
@@ -46,7 +45,6 @@ const Search = () => {
       localStorage.setItem("recipes", JSON.stringify(recipes));
       navigate("/recipes");
     } catch (error) {
-      console.log(error);
       dispatch(
         setToast({ status: "failure", displayMessage: JSON.stringify(error) })
       );

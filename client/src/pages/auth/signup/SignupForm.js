@@ -62,7 +62,6 @@ const SignupForm = () => {
           setUserData(defaultUserData);
         } else if (!res.ok) {
           const { msg } = await res.json();
-          console.log(msg);
           dispatch(setToast({ status: "failure", displayMessage: msg }));
           return;
         }

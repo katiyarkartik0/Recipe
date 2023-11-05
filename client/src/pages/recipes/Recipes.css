@@ -47,6 +47,42 @@
   color: #fff;
   margin-right: 4px;
 }
+
+.pageinatorContainer{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 7px 0 7px 0;
+}
+
+.paginator {
+  background-color: white;
+  border: 1px solid #2c2d2e;
+  color: #2c2d2e;
+  width: max-content;
+}
+
+.paginator:active,
+.paginator:hover {
+  background-color: #2c2d2e;
+  border: 1px solid #2c2d2e;
+  color: #f8f8f8;
+}
+
+.page-tag {
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+  margin: 2px;
+}
+.page-tag-blue{
+    color: #1c4980;
+    background: #ddedff;
+}
 @media (max-width: 768px) {
   .item-page-heading {
     font-size: 16px;

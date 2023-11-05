@@ -52,7 +52,6 @@ const HomePage = () => {
     };
     fetchSavedRecipes();
   }, []);
-  console.log(savedRecipes);
   if (accessToken) {
     return (
       <>
