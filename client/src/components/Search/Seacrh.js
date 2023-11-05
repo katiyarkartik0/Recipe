@@ -13,6 +13,7 @@ import { PREFERENCES } from "helpers/constants";
 
 import "./Search.css";
 import { isEqualStrings } from "helpers/validator";
+import { Loader } from "utils/Loader/Loader";
 
 const Search = () => {
   const accessToken = useSelector(selectAccessToken);
@@ -23,12 +24,13 @@ const Search = () => {
     intolerances: [],
     cuisine: [],
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = ({ preferenceName, value }) => {
     const preference = currentPreference[preferenceName];
     if (preference.includes(value)) {
-      const updatedPreferences = preference.filter((option) =>
-        !(isEqualStrings([option, value]))
+      const updatedPreferences = preference.filter(
+        (option) => !isEqualStrings([option, value])
       );
       setCurrentPreference({
         ...currentPreference,
@@ -60,6 +62,7 @@ const Search = () => {
   };
 
   const handleSearch = async () => {
+    setIsLoading(true);
     try {
       const response = await getRecipes({
         accessToken,
@@ -75,6 +78,7 @@ const Search = () => {
         setToast({ status: "failure", displayMessage: JSON.stringify(error) })
       );
     }
+    setIsLoading(false);
   };
 
   return (
@@ -110,6 +114,7 @@ const Search = () => {
         text={"Get Recipes"}
         onClickEvent={handleSearch}
         className="get-recipes-btn"
+        isLoading={isLoading}
       />
     </>
   );

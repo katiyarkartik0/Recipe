@@ -1,6 +1,14 @@
+import { Loader } from "utils/Loader/Loader";
 import "./Button.css";
 
-const Button = ({ type, text, onClickEvent, className, disabled = false }) => {
+const Button = ({
+  type,
+  text,
+  onClickEvent,
+  className,
+  disabled = false,
+  isLoading = false,
+}) => {
   const classes =
     "app-button-component" +
     " " +
@@ -14,7 +22,7 @@ const Button = ({ type, text, onClickEvent, className, disabled = false }) => {
       onClick={onClickEvent}
       disabled={disabled}
     >
-      {text}
+      {isLoading ? <Loader /> : text}
     </button>
   );
 };
