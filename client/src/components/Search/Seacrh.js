@@ -12,6 +12,7 @@ import { selectAccessToken } from "helpers/selector";
 import { PREFERENCES } from "helpers/constants";
 
 import "./Search.css";
+import { isEqualStrings } from "helpers/validator";
 
 const Search = () => {
   const accessToken = useSelector(selectAccessToken);
@@ -26,9 +27,13 @@ const Search = () => {
   const handleClick = ({ preferenceName, value }) => {
     const preference = currentPreference[preferenceName];
     if (preference.includes(value)) {
-      const updatedPreferences = preference.filter(
-        (option) => option !== value
+      const updatedPreferences = preference.filter((option) =>
+        !(isEqualStrings([option, value]))
       );
+      setCurrentPreference({
+        ...currentPreference,
+        [preferenceName]: updatedPreferences,
+      });
       dispatch(
         setPreferences({
           preferences: {
@@ -53,6 +58,7 @@ const Search = () => {
       );
     }
   };
+
   const handleSearch = async () => {
     try {
       const response = await getRecipes({

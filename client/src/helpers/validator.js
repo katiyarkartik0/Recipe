@@ -46,3 +46,16 @@ export const fieldValidation = (collectionOfFields) => {
     isDataValid: true,
   };
 };
+
+export const isEqualStrings = (strings) => {
+  for (let itr1 = 0; itr1 < strings.length; itr1++) {
+    for (let itr2 = itr1 + 1; itr2 < strings.length; itr2++) {
+      const str1 = strings[itr1];
+      const str2 = strings[itr2];
+      if (str1.localeCompare(str2) !== 0) {
+        return false;
+      }
+    }
+  }
+  return true;
+};
