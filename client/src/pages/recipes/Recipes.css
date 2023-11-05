@@ -1,0 +1,31 @@
+.items {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.item-box {
+  display: inline-flex;
+  flex-direction: column;
+  width: 350px;
+  height: auto;
+}
+
+.item-page-heading {
+  text-align: center;
+  padding: 0 24px;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 16px;
+}
+
+@media (max-width: 768px) {
+  .item-page-heading {
+    font-size: 16px;
+  }
+
+  .item-box {
+    width: 272px;
+  }
+}

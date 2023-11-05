@@ -1,4 +1,25 @@
-.instruction{
-    background-color: rgb(196, 120, 20);
-    border: 1px solid black;
-  }
+.instruction {
+  border: 1px solid black;
+  width: 350px;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.ingredient-list {
+  list-style: none;
+}
+
+.instruction-detail-item {
+  padding: 0 10px;
+  margin: 4px 0 16px;
+  text-transform: capitalize;
+}
+
+.instruction-detail-heading {
+  margin: 0;
+}
+
+.step-content {
+  padding: 0 10px;
+  margin: 4px 0 0;
+}

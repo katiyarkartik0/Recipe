@@ -55,19 +55,21 @@ const Search = () => {
 
   return (
     <>
-      <div className="card">
+      <div className="preference-container">
         {PREFERENCES.map(({ name: preferenceName, options }) => {
           return (
             <div key={preferenceName}>
-              <h2 className="card-heading">{preferenceName}</h2>
-              <div className="tags">
+              <h2 className="preference-heading">{preferenceName}</h2>
+              <div className="preference-tags-container">
                 {options.map(({ name: optionName, value }) => {
                   const isOptionIncluded =
                     preferences[preferenceName].includes(value);
                   return (
                     <button
                       key={value}
-                      className={`${isOptionIncluded ? "tag-included" : "tag"}`}
+                      className={`${
+                        isOptionIncluded ? "selected-tag" : "preference-tag"
+                      }`}
                       onClick={() => handleClick({ preferenceName, value })}
                     >
                       {optionName}
@@ -79,7 +81,7 @@ const Search = () => {
           );
         })}
       </div>
-      <Button text={"Get Recipes"} onClickEvent={handleSearch} />
+      <Button text={"Get Recipes"} onClickEvent={handleSearch} className="get-recipes-btn" />
     </>
   );
 };

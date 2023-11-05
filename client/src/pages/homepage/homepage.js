@@ -57,33 +57,44 @@ const HomePage = () => {
     return (
       <div className="App">
         <div className="nav">
-          <h1>Recipe App</h1>
-          <Button
-            text={"Logout " + userData.name}
-            onClickEvent={handleLogout}
-          />
+          <h1 className="app-nav-header">Recipe App</h1>
+          <div className="user-detail">
+            <div className="userName icon-user">{userData.name}</div>
+
+            <Button
+              className="logout"
+              text="Logout"
+              onClickEvent={handleLogout}
+            />
+          </div>
         </div>
         <div>
           <Search />
         </div>
         <hr></hr>
-        <h3>Saved Recipes</h3>
+        <h3 className="save-recipes-heading">Saved Recipes</h3>
         {/* <Recipe
               imageType={"jpg"}
               id={"716429"}
               title={"Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs"}
               imageUrl={"https://spoonacular.com/recipeImages/716429-312x231.jpg"}
             /> */}
-        {savedRecipes.map(({ spoonacularRecipeId, title, image, imageType }) => {
-          return (
-            <Recipe
-              imageType={imageType}
-              title={title}
-              imageUrl={image}
-              id={spoonacularRecipeId}
-            />
-          );
-        })}
+
+        <div className="saved-item-list">
+          {savedRecipes.map(
+            ({ spoonacularRecipeId, title, image, imageType }) => {
+              return (
+                <Recipe
+                  imageType={imageType}
+                  title={title}
+                  imageUrl={image}
+                  id={spoonacularRecipeId}
+                  className="saved-item"
+                />
+              );
+            }
+          )}
+        </div>
 
         <br></br>
       </div>

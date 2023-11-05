@@ -9,9 +9,7 @@ import UnauthorizedPage from "pages/unauthorizedPage/UnauthorizedPage";
 const RecipeDetailPage = () => {
   const { recipeId } = useParams();
 
-  const {
-    recipes: { results = [] },
-  } = useSelector(selectRecipes);
+  const { recipes: { results = [] } = {} } = useSelector(selectRecipes);
 
   let recipe;
   for (const result of results) {

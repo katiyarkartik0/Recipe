@@ -77,53 +77,88 @@ const SignupForm = () => {
   };
   return (
     <form className="form" onSubmit={handleSubmit} onChange={handleUserData}>
-      <input
-        type="text"
-        className="input-field"
-        placeholder="Full Name"
-        name="name"
-        value={userData.name}
-      />
-      {errors.name && <span className="input-error">{errors.name}</span>}
-      <input
-        type="text"
-        className="input-field"
-        placeholder="Email"
-        name="email"
-        value={userData.email}
-      />
-      {errors.email && <span className="input-error">{errors.email}</span>}
-      <div className="password-container">
+      <div className="field-box">
+        <label for="fullname" className="input-label">
+          Full Name
+        </label>
         <input
+          id="fullname"
+          type="text"
+          className={`input-field ${errors.name ? "error" : ""}`}
+          placeholder="Full Name"
+          name="name"
+          value={userData.name}
+        />
+        {errors.name && <span className="input-error">{errors.name}</span>}
+      </div>
+
+      <div className="field-box">
+        <label for="email" className="input-label">
+          Email
+        </label>
+        <input
+          id="email"
+          type="text"
+          className={`input-field ${errors.email ? "error" : ""}`}
+          placeholder="Email"
+          name="email"
+          value={userData.email}
+        />
+        {errors.email && <span className="input-error">{errors.email}</span>}
+      </div>
+
+      <div className="password-container field-box">
+        <label for="password" className="input-label">
+          Password
+        </label>
+        <input
+          id="password"
           type={showPassword ? "text" : "password"}
-          className="input-field"
+          className={`input-field ${errors.password ? "error" : ""}`}
           placeholder="Password"
           name="password"
           value={userData.password}
         />
-        <span className="show-hide" onClick={togglePasswordVisibility}>
-          {showPassword ? "Hide" : "Show"}
-        </span>
+        <span
+          className={`show-hide-pass ${errors.password ? "error-pass" : ""} ${
+            showPassword ? "icon-eye" : "icon-eye-slash"
+          }`}
+          onClick={togglePasswordVisibility}
+        ></span>
+        {errors.password && (
+          <span className="input-error">{errors.password}</span>
+        )}
       </div>
-      {errors.password && (
-        <span className="input-error">{errors.password}</span>
-      )}
-      <div className="password-container">
+
+      <div className="password-container field-box">
+        <label for="confirmPass" className="input-label">
+          Confirm Password
+        </label>
         <input
+          id="confirmPass"
           type={showPassword ? "text" : "password"}
-          className="input-field"
+          className={`input-field ${errors.confirmPassword ? "error" : ""}`}
           placeholder="Confirm Password"
           value={userData.confirmPassword}
           name="confirmPassword"
         />
-        <span className="show-hide" onClick={togglePasswordVisibility}>
-          {showPassword ? "Hide" : "Show"}
-        </span>
+        <span
+          className={`show-hide-pass ${
+            errors.confirmPassword ? "error-pass" : ""
+          } ${showPassword ? "icon-eye" : "icon-eye-slash"}`}
+          onClick={togglePasswordVisibility}
+        ></span>
+        {errors.confirmPassword && (
+          <span className="input-error">{errors.confirmPassword}</span>
+        )}
       </div>
-      {errors.confirmPassword && (
-        <span className="input-error">{errors.confirmPassword}</span>
+      {!isLoading && (
+        <Button
+          type="submit"
+          className="common-button field-box"
+          text="Sign Up"
+        />
       )}
-      {!isLoading && <Button type="submit" text="Sign Up" />}
       {isLoading && <Loader />}
     </form>
   );

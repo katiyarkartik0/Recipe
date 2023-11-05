@@ -2,11 +2,48 @@
 
 /* Base styles for the product detail */
 .product-detail {
+  padding: 24px;
+}
+
+.ingredient-box {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.item-detail {
+  border: 1px solid #919295;
+  display: inline-flex;
+  align-items: flex-start;
+  padding: 24px;
+  gap: 24px;
+  border-radius: 12px;
+}
+
+.product-title {
+  font-size: 24px;
+  margin-top: 0;
+}
+
+.instruction-heading,
+.nutrient-heading,
+.ingredient-heading {
+  font-size: 32px;
+  line-height: 1.33;
+  text-transform: uppercase;
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+.nutrients-table,
+.ingredients-table {
+  border-collapse: collapse;
+}
+
+.nutrients-heading,
+.ingredients-heading {
+  padding: 12px;
+  text-align: left;
 }
 
 /* Responsive styles for the product image */
@@ -16,17 +53,38 @@
 }
 
 /* Responsive styles for the product title */
-.product-title {
-  font-size: 1.5rem;
-}
 
-table, th, td {
-  border: 1px solid black;
+table,
+th,
+td {
+  border: 2px solid #2c2d2e;
 }
 /* Media query for small screens (e.g., mobile) */
 @media (max-width: 768px) {
   /* Reduce font size for smaller screens */
   .product-title {
     font-size: 1.2rem;
+  }
+
+  .item-detail {
+    flex-direction: column;
+  }
+
+  .product-box {
+    width: 100%;
+  }
+
+  .instruction-heading,
+  .nutrient-heading,
+  .ingredient-heading {
+    font-size: 20px;
+  }
+
+  .product-detail {
+    padding: 0;
+  }
+
+  .nutrients-heading {
+    padding: 12px 8px;
   }
 }

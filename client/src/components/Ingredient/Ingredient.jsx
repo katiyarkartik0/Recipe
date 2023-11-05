@@ -8,9 +8,9 @@ const Ingredient = ({
 }) => {
   return (
     <tr>
-      <td>{name}</td>
-      <td>{unit}</td>
-      <td>{value}</td>
+      <td className="ingredient-data">{name}</td>
+      <td className="ingredient-data">{unit}</td>
+      <td className="ingredient-data">{value}</td>
     </tr>
   );
 };

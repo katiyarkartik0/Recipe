@@ -139,37 +139,43 @@ const RecipeDetails = ({
 
   return (
     <div className="product-detail">
-      <img className="product-image" src={imageUrl} alt={title} />
-      <h1 className="product-title">{title}</h1>
-      <div className="container">
-        <RecipeButton
-          recipeId={id}
-          imageUrl={imageUrl}
-          title={title}
-          imageType={imageType}
-        />{" "}
-        <h2>Instructions</h2>
-        {isLoading.instructions && <Loader />}
-        {!isLoading.instructions &&
-          instructions.map(
-            ({ ingredients = [], equipment = [], step }, idx) => (
-              <Instruction
-                key={idx}
-                ingredients={ingredients}
-                equipment={equipment}
-                step={step}
-              />
-            )
-          )}
+      <div className="item-detail">
+        <img className="product-image" src={imageUrl} alt={title} />
+        <div className="product-box">
+          <h1 className="product-title">{title}</h1>
+          <RecipeButton
+            recipeId={id}
+            imageUrl={imageUrl}
+            title={title}
+            imageType={imageType}
+          />{" "}
+        </div>
       </div>
       <div className="container">
-        <h2>Nutrients</h2>
+        <h2 className="instruction-heading">Instructions</h2>
+        <div className="ingredient-box">
+          {isLoading.instructions && <Loader />}
+          {!isLoading.instructions &&
+            instructions.map(
+              ({ ingredients = [], equipment = [], step }, idx) => (
+                <Instruction
+                  key={idx}
+                  ingredients={ingredients}
+                  equipment={equipment}
+                  step={step}
+                />
+              )
+            )}
+        </div>
+      </div>
+      <div className="container">
+        <h2 className="nutrient-heading">Nutrients</h2>
         <table className="nutrients-table">
-          <tr className="nutrients-row">
-            <th>Name</th>
-            <th>Unit</th>
-            <th>Amount</th>
-            <th>Percent of Daily Needs</th>
+          <tr>
+            <th className="nutrients-heading">Name</th>
+            <th className="nutrients-heading">Unit</th>
+            <th className="nutrients-heading">Amount</th>
+            <th className="nutrients-heading">Percent of Daily Needs</th>
           </tr>
           <tbody>
             {isLoading.nutritionalInfo && <Loader />}
@@ -181,12 +187,12 @@ const RecipeDetails = ({
         </table>
       </div>
       <div className="container">
-        <h2>Ingredients</h2>
+        <h2 className="ingredient-heading">Ingredients</h2>
         <table className="ingredients-table">
-          <tr className="ingredients-row">
-            <th>Name</th>
-            <th>Units</th>
-            <th>Amount</th>
+          <tr>
+            <th className="ingredients-heading">Name</th>
+            <th className="ingredients-heading">Units</th>
+            <th className="ingredients-heading">Amount</th>
           </tr>
           <tbody>
             {isLoading.ingredients && <Loader />}

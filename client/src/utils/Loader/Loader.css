@@ -6,13 +6,17 @@
   /* height: 100vh; */
 }
 
+.loader-background {
+  margin-top: 16px;
+}
+
 /* Dot styles */
 .dot {
-  width: 20px;
-  height: 20px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background-color: #007bff; /* Change the color as needed */
-  margin: 0 8px;
+  background-color: #2c2d2e;
+  margin: 0 3px;
 }
 
 /* Animation for dot1 */

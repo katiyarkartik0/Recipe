@@ -1,14 +1,14 @@
-import "./Nutrition.css"
+import "./Nutrition.css";
 const Nutrition = ({
   nutrient: { name = "", unit = "", amount = "", percentOfDailyNeeds = "" },
 }) => {
   return (
     <>
-      <tr >
-        <td>{name}</td>
-        <td>{unit}</td>
-        <td>{amount}</td>
-        <td>{percentOfDailyNeeds}</td>
+      <tr>
+        <td className="nutrition-data">{name}</td>
+        <td className="nutrition-data">{unit}</td>
+        <td className="nutrition-data">{amount}</td>
+        <td className="nutrition-data">{percentOfDailyNeeds}</td>
       </tr>
     </>
   );

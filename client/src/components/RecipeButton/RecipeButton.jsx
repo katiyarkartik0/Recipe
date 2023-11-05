@@ -87,6 +87,7 @@ const RecipeButton = ({ recipeId, title, imageUrl, imageType }) => {
       {isLoading && <Loader />}
       {!isLoading && (
         <Button
+          className="common-button item-render-button"
           text={isRecipeSaved ? "UNSAVE" : "SAVE"}
           onClickEvent={toggleSave}
         />

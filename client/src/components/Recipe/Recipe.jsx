@@ -4,15 +4,16 @@ import "./Recipe.css";
 import RecipeButton from "components/RecipeButton/RecipeButton";
 import { useNavigate } from "react-router-dom";
 
-const Recipe = ({ id: recipeId, imageUrl, title, imageType }) => {
+const Recipe = ({ id: recipeId, imageUrl, title, imageType, className }) => {
+  const classes = "card" + " " + className;
   const navigate = useNavigate();
 
   const handleClick = () => {
     navigate(`/recipes/${recipeId}`);
   };
   return (
-    <div className="card">
-      <div onClick={handleClick}>
+    <div className={classes}>
+      <div onClick={handleClick} className="card-item-detail">
         <img src={imageUrl} alt={title} className="card-image" />
         <h3 className="card-title">{title}</h3>
       </div>

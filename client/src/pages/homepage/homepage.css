@@ -1,5 +1,84 @@
-.nav{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.App {
+  background-color: #f8f8f8;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.app-nav-header {
+  margin: 0;
+}
+
+.saved-item-list {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.saved-item {
+  display: inline-flex;
+  flex-direction: column;
+  width: 350px;
+  height: auto;
+}
+
+.logout {
+  background-color: white;
+  border: 1px solid #2c2d2e;
+  color: #2c2d2e;
+  width: max-content;
+}
+
+.logout:active,
+.logout:hover {
+  background-color: #2c2d2e;
+  border: 1px solid #2c2d2e;
+  color: #f8f8f8;
+}
+
+.save-recipes-heading {
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.user-detail {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.userName {
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: #2c2d2e;
+}
+
+.userName::before {
+  color: #2c2d2e;
+  margin-right: 4px;
+}
+
+@media (max-width: 768px) {
+  .save-recipes-heading {
+    font-size: 24px;
+  }
+
+  .app-nav-header {
+    font-size: 24px;
+  }
+
+  .saved-item {
+    width: 272px;
+  }
+
+  .App {
+    padding: 12px;
+  }
 }

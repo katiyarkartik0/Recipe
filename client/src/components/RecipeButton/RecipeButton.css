@@ -1,0 +1,13 @@
+.common-button {
+  background-color: white;
+  border: 1px solid #2c2d2e;
+  color: #2c2d2e;
+  width: 100%;
+}
+
+.common-button:active,
+.common-button:hover {
+  background-color: #2c2d2e;
+  border: 1px solid #2c2d2e;
+  color: #f8f8f8;
+}

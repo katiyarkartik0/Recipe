@@ -13,6 +13,8 @@ import { fieldValidation } from "helpers/validator";
 import "./LoginForm.css";
 import { setToast } from "store/slices/toast";
 
+import "utils/icons/icon.css";
+
 const defaultUserCredentials = {
   email: "",
   password: "",
@@ -74,31 +76,43 @@ const LoginForm = () => {
 
   return (
     <form className="form" onSubmit={hanldeSubmit}>
-      <input
-        type="text"
-        value={userCredentials.email}
-        onChange={handleEmail}
-        className={`input-field${errors.email ? "-error" : ""}`}
-        placeholder="Email"
-      />
-      {errors.email && <span className="input-error">{errors.email}</span>}
-      <br></br>
-      <div className="password-container">
+      <div className="field-box">
+        <label for="email" className="input-label">
+          Email
+        </label>
         <input
+          id="email"
+          type="text"
+          value={userCredentials.email}
+          onChange={handleEmail}
+          className={`input-field ${errors.email ? "error-box" : ""}`}
+          placeholder="Email"
+        />
+        {errors.email && <span className="input-error">{errors.email}</span>}
+      </div>
+
+      <div className="password-container field-box">
+        <label for="password" className="input-label">
+          Password
+        </label>
+        <input
+          id="password"
           onChange={handlePassword}
           type={showPassword ? "text" : "password"}
-          className={`input-field${errors.password ? "-error" : ""}`}
+          className={`input-field ${errors.password ? "error-box" : ""}`}
           placeholder="Password"
           value={userCredentials.password}
         />
-        <span className="show-hide" onClick={togglePasswordVisibility}>
-          {showPassword ? "Hide" : "Show"}
-        </span>
+        <span
+          className={`sign-in-pass ${errors.password ? "error-icon" : ""} ${
+            showPassword ? "icon-eye" : "icon-eye-slash"
+          }`}
+          onClick={togglePasswordVisibility}
+        ></span>
+        {errors.password && (
+          <span className="input-error">{errors.password}</span>
+        )}
       </div>
-      {errors.password && (
-        <span className="input-error">{errors.password}</span>
-      )}
-      <br></br>
       <Button
         type="button"
         onClickEvent={() =>
@@ -107,16 +121,18 @@ const LoginForm = () => {
             password: "qwerty",
           })
         }
+        className="common-button field-box"
         text="Generate Sample User Credentials"
-        style={{ width: "100%" }}
       />
-      <br></br>
 
       {!isLoading && (
-        <Button type="submit" text="Log In" style={{ width: "100%" }} />
+        <Button
+          type="submit"
+          text="Log In"
+          className="common-button field-box"
+        />
       )}
       {isLoading && <Loader />}
-      <br></br>
     </form>
   );
 };

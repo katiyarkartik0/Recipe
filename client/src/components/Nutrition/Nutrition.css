@@ -1,0 +1,9 @@
+.nutrition-data {
+  padding: 12px;
+}
+
+@media (max-width: 768px) {
+  .nutrition-data {
+    padding: 12px 8px;
+  }
+}
