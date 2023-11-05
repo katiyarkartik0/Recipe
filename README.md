@@ -43,5 +43,5 @@ To get started with the Recipe project, follow the installation and setup instru
 [Frontend](https://github.com/katiyarkartik0/Recipe/blob/main/client/README.md)
 ## Feedback and Support
 
-We hope you enjoy using Recipe to discover, save, and manage your favorite recipes. If you have any questions, feedback, or suggestions, please don't hesitate to reach out to [me](katiyarkartik0@gmail.com). Happy cooking!
+We hope you enjoy using Recipe to discover, save, and manage your favorite recipes. If you have any questions, feedback, or suggestions, please don't hesitate to reach out to me(katiyarkartik0@gmail.com). Happy cooking!
 
