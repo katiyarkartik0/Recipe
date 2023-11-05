@@ -247,5 +247,5 @@ Before using these functions, make sure to configure your environment by setting
 [Features of Recipe Project](https://github.com/katiyarkartik0/recipe/blob/main/README.md)
 
 ### Checkout README.md for frontend implementation
-[Frontend](https://github.com/katiyarkartik0/recipe/blob/main/frontend/README.md)
+[Frontend](https://github.com/katiyarkartik0/Recipe/blob/main/client/README.md)
 
