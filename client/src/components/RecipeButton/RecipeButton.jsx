@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import { setDeleteSavedRecipe, setSaveRecipe } from "store/slices/recipes";
 import { setToast } from "store/slices/toast";
 
@@ -8,11 +10,15 @@ import Button from "components/Button/Button";
 
 import { selectAccessToken, selectSavedRecipes } from "helpers/selector";
 
-import "./RecipeButton.css";
-import { useEffect, useState } from "react";
 import { Loader } from "utils/Loader/Loader";
 
+import "./RecipeButton.css";
+
 const RecipeButton = ({ recipeId, title, imageUrl, imageType }) => {
+  const { recipeId: isRecipeDetailPage } = useParams(); //if we can catch recipeId from parameters it is a product detail page
+
+  const navigate = useNavigate();
+
   const savedRecipes = useSelector(selectSavedRecipes);
   const accessToken = useSelector(selectAccessToken);
   const dispatch = useDispatch();
@@ -80,6 +86,9 @@ const RecipeButton = ({ recipeId, title, imageUrl, imageType }) => {
       );
     }
     setIsLoading(false);
+    if (isRecipeDetailPage) {
+      navigate("/home");
+    }
   };
 
   return (

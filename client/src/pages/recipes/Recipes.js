@@ -38,7 +38,6 @@ const Recipes = () => {
     localStorage.clear();
     navigate("/");
   };
-
   const handleSearch = async ({ pageNumber }) => {
     setIsItemsLoading(true);
     try {

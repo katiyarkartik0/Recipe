@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setRecipes } from "store/slices/recipes";
+import { setPreferences, setRecipes } from "store/slices/recipes";
 import { setToast } from "store/slices/toast";
 
 import Button from "components/Button/Button";
@@ -17,28 +17,48 @@ const Search = () => {
   const accessToken = useSelector(selectAccessToken);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [preferences, setPreferences] = useState({
+  const [currentPreference, setCurrentPreference] = useState({
     diet: [],
     intolerances: [],
     cuisine: [],
   });
 
   const handleClick = ({ preferenceName, value }) => {
-    const preference = preferences[preferenceName];
+    const preference = currentPreference[preferenceName];
     if (preference.includes(value)) {
       const updatedPreferences = preference.filter(
         (option) => option !== value
       );
-      setPreferences({ ...preferences, [preferenceName]: updatedPreferences });
+      dispatch(
+        setPreferences({
+          preferences: {
+            ...currentPreference,
+            [preferenceName]: updatedPreferences,
+          },
+        })
+      );
     } else {
       const updatedPreferences = [...preference, value];
-      setPreferences({ ...preferences, [preferenceName]: updatedPreferences });
+      setCurrentPreference({
+        ...currentPreference,
+        [preferenceName]: updatedPreferences,
+      });
+      dispatch(
+        setPreferences({
+          preferences: {
+            ...currentPreference,
+            [preferenceName]: updatedPreferences,
+          },
+        })
+      );
     }
   };
-
   const handleSearch = async () => {
     try {
-      const response = await getRecipes({ accessToken, preferences });
+      const response = await getRecipes({
+        accessToken,
+        preferences: currentPreference,
+      });
 
       const recipes = await response.json();
       dispatch(setRecipes({ recipes }));
@@ -62,7 +82,7 @@ const Search = () => {
               <div className="preference-tags-container">
                 {options.map(({ name: optionName, value }) => {
                   const isOptionIncluded =
-                    preferences[preferenceName].includes(value);
+                    currentPreference[preferenceName].includes(value);
                   return (
                     <button
                       key={value}
@@ -80,7 +100,11 @@ const Search = () => {
           );
         })}
       </div>
-      <Button text={"Get Recipes"} onClickEvent={handleSearch} className="get-recipes-btn" />
+      <Button
+        text={"Get Recipes"}
+        onClickEvent={handleSearch}
+        className="get-recipes-btn"
+      />
     </>
   );
 };

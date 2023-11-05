@@ -30,7 +30,6 @@ const RecipeDetailPage = () => {
     }
   }
 
-  debugger;
   if (recipe) {
     const { id, image, title, imageType, spoonacularRecipeId } = recipe;
     return (
