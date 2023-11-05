@@ -18,13 +18,13 @@ const AuthenticationPage = () => {
               type="click"
               onClickEvent={() => setIsLogin(true)}
               className={isLogin ? "active-button" : "inactive-button"}
-              text="SignIn"
+              text="Already have an account"
             />
             <Button
               type="click"
               onClickEvent={() => setIsLogin(false)}
               className={isLogin ? "inactive-button" : "active-button"}
-              text="SignUp"
+              text="Register"
             />
           </div>
           {isLogin ? <LoginForm /> : <SignupForm />}
