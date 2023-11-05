@@ -60,7 +60,6 @@ const HomePage = () => {
           <h1 className="app-nav-header">Recipe App</h1>
           <div className="user-detail">
             <div className="userName icon-user">{userData.name}</div>
-
             <Button
               className="logout"
               text="Logout"
@@ -73,13 +72,6 @@ const HomePage = () => {
         </div>
         <hr></hr>
         <h3 className="save-recipes-heading">Saved Recipes</h3>
-        {/* <Recipe
-              imageType={"jpg"}
-              id={"716429"}
-              title={"Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs"}
-              imageUrl={"https://spoonacular.com/recipeImages/716429-312x231.jpg"}
-            /> */}
-
         <div className="saved-item-list">
           {savedRecipes.map(
             ({ spoonacularRecipeId, title, image, imageType }) => {

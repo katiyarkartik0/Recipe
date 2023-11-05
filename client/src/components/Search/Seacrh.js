@@ -56,6 +56,7 @@ const Search = () => {
   return (
     <>
       <div className="preference-container">
+        <h3>Whats your pick?</h3>
         {PREFERENCES.map(({ name: preferenceName, options }) => {
           return (
             <div key={preferenceName}>

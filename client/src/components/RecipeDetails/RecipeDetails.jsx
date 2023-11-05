@@ -8,12 +8,15 @@ import {
   getNutritionalInfo,
 } from "api/recipe";
 import { useDispatch, useSelector } from "react-redux";
-import { selectAccessToken } from "helpers/selector";
+import { selectAccessToken, selectUserData } from "helpers/selector";
 import Instruction from "components/Instruction/Instruction";
 import Nutrition from "components/Nutrition/Nutrition";
 import Ingredient from "components/Ingredient/Ingredient";
 import { Loader } from "utils/Loader/Loader";
 import RecipeButton from "components/RecipeButton/RecipeButton";
+import Button from "components/Button/Button";
+import { useNavigate } from "react-router-dom";
+import { destroyAccessToken } from "api/accessToken";
 
 const LOCAL_STORAGE_INSTRUCTIONS_KEY = ({ id: recipeId }) =>
   `${recipeId}-instructions`;
@@ -30,6 +33,11 @@ const RecipeDetails = ({
   title = "",
   imageType = "",
 }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const accessToken = useSelector(selectAccessToken);
+  const userData = useSelector(selectUserData);
+
   const [instructions, setInstructions] = useState([]);
   const [nutritionalInfo, setNutritionalInfo] = useState([]);
   const [ingredients, setIngredients] = useState([]);
@@ -40,8 +48,11 @@ const RecipeDetails = ({
     ingredients: false,
   });
 
-  const accessToken = useSelector(selectAccessToken);
-  const dispatch = useDispatch();
+  const handleLogout = async () => {
+    await destroyAccessToken({ accessToken });
+    localStorage.clear();
+    navigate("/");
+  };
 
   const fetchInstructions = useCallback(async () => {
     const steps = JSON.parse(
@@ -138,72 +149,87 @@ const RecipeDetails = ({
   }, []);
 
   return (
-    <div className="product-detail">
-      <div className="item-detail">
-        <img className="product-image" src={imageUrl} alt={title} />
-        <div className="product-box">
-          <h1 className="product-title">{title}</h1>
-          <RecipeButton
-            recipeId={id}
-            imageUrl={imageUrl}
-            title={title}
-            imageType={imageType}
-          />{" "}
+    <>
+      <div className="navbar">
+        <div className="nav">
+          <h1 className="app-nav-header">Recipe Details</h1>
+          <div className="user-detail">
+            <div className="userName icon-user">{userData.name}</div>
+            <Button
+              className="logout"
+              text="Logout"
+              onClickEvent={handleLogout}
+            />
+          </div>
         </div>
       </div>
-      <div className="container">
-        <h2 className="instruction-heading">Instructions</h2>
-        <div className="ingredient-box">
-          {isLoading.instructions && <Loader />}
-          {!isLoading.instructions &&
-            instructions.map(
-              ({ ingredients = [], equipment = [], step }, idx) => (
-                <Instruction
-                  key={idx}
-                  ingredients={ingredients}
-                  equipment={equipment}
-                  step={step}
-                />
-              )
-            )}
+      <div className="product-detail">
+        <div className="item-detail">
+          <img className="product-image" src={imageUrl} alt={title} />
+          <div className="product-box">
+            <h1 className="product-title">{title}</h1>
+            <RecipeButton
+              recipeId={id}
+              imageUrl={imageUrl}
+              title={title}
+              imageType={imageType}
+            />{" "}
+          </div>
+        </div>
+        <div className="container">
+          <h2 className="instruction-heading">Instructions</h2>
+          <div className="ingredient-box">
+            {isLoading.instructions && <Loader />}
+            {!isLoading.instructions &&
+              instructions.map(
+                ({ ingredients = [], equipment = [], step }, idx) => (
+                  <Instruction
+                    key={idx}
+                    ingredients={ingredients}
+                    equipment={equipment}
+                    step={step}
+                  />
+                )
+              )}
+          </div>
+        </div>
+        <div className="container">
+          <h2 className="nutrient-heading">Nutrients</h2>
+          <table className="nutrients-table">
+            <tr>
+              <th className="nutrients-heading">Name</th>
+              <th className="nutrients-heading">Unit</th>
+              <th className="nutrients-heading">Amount</th>
+              <th className="nutrients-heading">Percent of Daily Needs</th>
+            </tr>
+            <tbody>
+              {isLoading.nutritionalInfo && <Loader />}
+              {!isLoading.nutritionalInfo &&
+                nutritionalInfo.map((nutrient, idx) => (
+                  <Nutrition key={idx} nutrient={nutrient} />
+                ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="container">
+          <h2 className="ingredient-heading">Ingredients</h2>
+          <table className="ingredients-table">
+            <tr>
+              <th className="ingredients-heading">Name</th>
+              <th className="ingredients-heading">Units</th>
+              <th className="ingredients-heading">Amount</th>
+            </tr>
+            <tbody>
+              {isLoading.ingredients && <Loader />}
+              {!isLoading.ingredients &&
+                ingredients.map((ingredient, idx) => (
+                  <Ingredient key={idx} ingredient={ingredient} />
+                ))}
+            </tbody>
+          </table>
         </div>
       </div>
-      <div className="container">
-        <h2 className="nutrient-heading">Nutrients</h2>
-        <table className="nutrients-table">
-          <tr>
-            <th className="nutrients-heading">Name</th>
-            <th className="nutrients-heading">Unit</th>
-            <th className="nutrients-heading">Amount</th>
-            <th className="nutrients-heading">Percent of Daily Needs</th>
-          </tr>
-          <tbody>
-            {isLoading.nutritionalInfo && <Loader />}
-            {!isLoading.nutritionalInfo &&
-              nutritionalInfo.map((nutrient, idx) => (
-                <Nutrition key={idx} nutrient={nutrient} />
-              ))}
-          </tbody>
-        </table>
-      </div>
-      <div className="container">
-        <h2 className="ingredient-heading">Ingredients</h2>
-        <table className="ingredients-table">
-          <tr>
-            <th className="ingredients-heading">Name</th>
-            <th className="ingredients-heading">Units</th>
-            <th className="ingredients-heading">Amount</th>
-          </tr>
-          <tbody>
-            {isLoading.ingredients && <Loader />}
-            {!isLoading.ingredients &&
-              ingredients.map((ingredient, idx) => (
-                <Ingredient key={idx} ingredient={ingredient} />
-              ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+    </>
   );
 };
 

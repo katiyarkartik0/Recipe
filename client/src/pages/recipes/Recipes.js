@@ -1,19 +1,45 @@
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import { destroyAccessToken } from "api/accessToken";
 
 import Recipe from "components/Recipe/Recipe";
+import Button from "components/Button/Button";
 
-import { selectRecipes } from "helpers/selector";
+
+import { selectAccessToken, selectRecipes, selectUserData } from "helpers/selector";
 
 import "./Recipes.css";
 
 const Recipes = () => {
   const { recipes: { results = [] } = {} } = useSelector(selectRecipes);
+  const userData = useSelector(selectUserData);
+  const accessToken = useSelector(selectAccessToken)
+  const navigate = useNavigate();
 
+  const handleLogout = async () => {
+    await destroyAccessToken({ accessToken });
+    localStorage.clear();
+    navigate("/");
+  };
   return (
     <>
-      <h3 className="item-page-heading">
-        Based on your preferences, we have...
-      </h3>
+      <div className="navbar">
+        <div className="nav">
+          <h3 className="item-page-heading">
+            Based on your preferences, we have...
+          </h3>{" "}
+          <div className="user-detail">
+            <div className="userName icon-user">{userData.name}</div>
+            <Button
+              className="logout"
+              text="Logout"
+              onClickEvent={handleLogout}
+            />
+          </div>
+        </div>
+      </div>
+
       <div className="items">
         {results.map(({ id, image, title, imageType }) => {
           return (

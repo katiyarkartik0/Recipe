@@ -9,6 +9,21 @@
   list-style: none;
 }
 
+.tag {
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+  margin: 2px;
+}
+.tag-blue{
+    color: #1c4980;
+    background: #ddedff;
+}
+
 .instruction-detail-item {
   padding: 0 10px;
   margin: 4px 0 16px;

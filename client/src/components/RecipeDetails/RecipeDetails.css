@@ -46,6 +46,35 @@
   text-align: left;
 }
 
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 15px;
+}
+
+.navbar{
+  background-color: #2c2d2e;
+  height: 70px;
+  display: grid;
+}
+
+.item-page-heading, .app-nav-header{
+  color: #fff;
+}
+
+.userName {
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: #fff;
+}
+
+.userName::before {
+  color: #fff;
+  margin-right: 4px;
+}
+
 /* Responsive styles for the product image */
 .product-image {
   max-width: 100%;

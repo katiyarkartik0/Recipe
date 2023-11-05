@@ -8,7 +8,7 @@ const Instruction = ({ ingredients = [], equipment = [], step = "" }) => {
           <h3 className="instruction-detail-heading">Ingredients</h3>
           <ul className="instruction-detail-item">
             {ingredients.map(({ name }) => {
-              return <li className="ingredient-list">{name}</li>;
+              return <li className="ingredient-list tag tag-blue">{name}</li>;
             })}
           </ul>
         </>
@@ -19,7 +19,7 @@ const Instruction = ({ ingredients = [], equipment = [], step = "" }) => {
           <h3 className="instruction-detail-heading">Equipments</h3>
           <ul className="instruction-detail-item">
             {equipment.map(({ name }) => {
-              return <li className="ingredient-list">{name}</li>;
+              return <li className="ingredient-list tag tag-blue">{name}</li>;
             })}
           </ul>
         </>
