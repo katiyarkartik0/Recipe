@@ -94,4 +94,11 @@
   .item-box {
     width: 272px;
   }
+  .pageinatorContainer{
+    flex-direction: column;
+    height: 150px;
+  }
+  .paginator{
+    width: 80%;
+  }
 }

@@ -15,7 +15,7 @@ const Recipe = ({ id: recipeId, imageUrl, title, imageType, className }) => {
     <div className={classes}>
       <div onClick={handleClick} className="card-item-detail">
         <img src={imageUrl} alt={title} className="card-image" />
-        <h3 className="card-title">{title}</h3>
+        <h3 className="card-title card-tag card-tag-blue">{title}</h3>
       </div>
       <RecipeButton
         recipeId={recipeId}

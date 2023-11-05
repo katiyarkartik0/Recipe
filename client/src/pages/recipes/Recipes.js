@@ -102,12 +102,16 @@ const Recipes = () => {
           className="paginator"
           text="Go Back"
           onClickEvent={() => handleSearch({ pageNumber: currentPage - 1 })}
+          disabled={currentPage > 1 ? false : true}
         />
-        <span className="page-tag page-tag-blue">{"page number " + currentPage}</span>
+        <span className="page-tag page-tag-blue">
+          {"page number " + currentPage}
+        </span>
         <Button
           className="paginator"
           text="Show More"
           onClickEvent={() => handleSearch({ pageNumber: currentPage + 1 })}
+          disabled={currentPage < 3 ? false : true}
         />
       </div>
     </>

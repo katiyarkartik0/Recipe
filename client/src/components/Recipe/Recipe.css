@@ -12,11 +12,21 @@
   border-radius: 4px;
 }
 
-.card-title {
-  margin: 12px 0;
-  font-size: 16px;
-  font-weight: 600;
-  width: 100%;
+.card-tag {
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+  margin: 2px;
+  margin: 8px;
+}
+
+.card-tag-blue {
+  color: #1c4980;
+  background: #ddedff;
 }
 
 .button-container {
