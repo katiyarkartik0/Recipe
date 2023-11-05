@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# Recipe Front-End Implementation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the README.md file for the Recipe project! This document provides an overview of your app and its features, technologies used, and how to get started.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Overview](#overview)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+- [Folder Structure](#folder-structure)
 
-### `npm start`
+### Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This is a React app is a modern and efficient web application built using cutting-edge technologies. It combines the power of React Router for routing and navigation, Redux Toolkit for state management. Additionally, it utilizes various React hooks such as `useState`, `useEffect`, `useSelector`, `useDispatch`, for enhanced functionality and performance.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Features
 
-### `npm test`
+This includes a wide range of features designed to provide an excellent user experience:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Routing and Navigation**: Utilizes React Router for seamless navigation between pages, enhancing the user experience.
 
-### `npm run build`
+- **State Management**: Employs Redux Toolkit, a powerful library for state management, to efficiently manage and update application state.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **React Hooks**: Leverages various React hooks, such as `useState`, `useEffect`, `useSelector`, `useDispatch`, `useCallback`.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Technologies Used
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Your app relies on the following key technologies and libraries:
 
-### `npm run eject`
+- **React**: A popular JavaScript library for building user interfaces.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **React Router**: A routing library for handling navigation within your application.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Redux Toolkit**: A library for efficient state management in React applications.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **React Hooks**: Essential React hooks like `useState`, `useEffect`, `useSelector`, `useDispatch`, for building functional components.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Getting Started
 
-## Learn More
+To get started with your React app, follow these steps:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Clone the repository to your local machine:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   ```bash
+   git clone https://github.com/katiyarkartik0/Recipe.git
+   ```
 
-### Code Splitting
+2. Install the dependencies:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+   ```bash
+   npm install
+   ```
 
-### Analyzing the Bundle Size
+3. Start the development server:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+   ```bash
+   npm start
+   ```
 
-### Making a Progressive Web App
+4. Open your browser and navigate to `http://localhost:3000` to access your app.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Folder Structure
 
-### Advanced Configuration
+Your app follows a well-organized folder structure to maintain code clarity and separation of concerns. Here's a brief overview:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **src**: Contains your application's source code.
+  - **api**: fetch requests to server api endpoints to obtain data responses.
+  - **components**: Reusable React components.
+  - **pages**: Top-level React components representing different pages.
+  - **store**: Redux store configuration.
+  - **utils**: Utility functions and helpers.
+  - **App.js**: The main entry point of your app.
+  - **index.js**: Entry point for rendering your app.
 
-### Deployment
+### Checkout README.md for backend implementation
+[Backend](https://github.com/katiyarkartik0/Recipe/blob/main/server/README.md)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Checkout README.md for Recipe overview
+[Features of Recipe app](https://github.com/katiyarkartik0/Recipe/blob/main/README.md)

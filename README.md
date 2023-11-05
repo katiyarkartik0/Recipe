@@ -37,7 +37,7 @@ Recipe is a web application that helps users discover and save their favorite re
 To get started with the Recipe project, follow the installation and setup instructions in the respective backend and frontend folders. You'll find detailed guidelines on how to set up the server, configure the database, and launch the frontend.
 
 ### Checkout README.md for backend implementation
-[Backend](https://github.com/katiyarkartik0/Recipe/blob/main/server/README.md#middleware-verifytokenjs)
+[Backend](https://github.com/katiyarkartik0/Recipe/blob/main/server/README.md)
 
 ### Checkout README.md for frontend implementation
 [Frontend](https://github.com/katiyarkartik0/Recipe/blob/main/client/README.md)
