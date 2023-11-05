@@ -3,13 +3,15 @@ import { useParams } from "react-router-dom";
 
 import RecipeDetails from "components/RecipeDetails/RecipeDetails";
 
-import { selectRecipes } from "helpers/selector";
 import UnauthorizedPage from "pages/unauthorizedPage/UnauthorizedPage";
+
+import { selectRecipes, selectSavedRecipes } from "helpers/selector";
 
 const RecipeDetailPage = () => {
   const { recipeId } = useParams();
 
   const { recipes: { results = [] } = {} } = useSelector(selectRecipes);
+  const savedRecipes = useSelector(selectSavedRecipes);
 
   let recipe;
   for (const result of results) {
@@ -18,11 +20,22 @@ const RecipeDetailPage = () => {
       break;
     }
   }
+
+  if (!recipe) {
+    for (const savedRecipe of savedRecipes) {
+      if (Number(savedRecipe.spoonacularRecipeId) === Number(recipeId)) {
+        recipe = savedRecipe;
+        break;
+      }
+    }
+  }
+
+  debugger;
   if (recipe) {
-    const { id, image, title, imageType } = recipe;
+    const { id, image, title, imageType, spoonacularRecipeId } = recipe;
     return (
       <RecipeDetails
-        id={id}
+        id={id || spoonacularRecipeId}
         imageUrl={image}
         title={title}
         imageType={imageType}
