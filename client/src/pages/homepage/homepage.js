@@ -55,41 +55,45 @@ const HomePage = () => {
   console.log(savedRecipes);
   if (accessToken) {
     return (
-      <div className="App">
-        <div className="nav">
-          <h1 className="app-nav-header">Recipe App</h1>
-          <div className="user-detail">
-            <div className="userName icon-user">{userData.name}</div>
-            <Button
-              className="logout"
-              text="Logout"
-              onClickEvent={handleLogout}
-            />
+      <>
+        <div>
+          <div className="nav">
+            <h1 className="app-nav-header">Recipe App</h1>
+            <div className="user-detail">
+              <div className="userName icon-user">{userData.name}</div>
+              <Button
+                className="logout"
+                text="Logout"
+                onClickEvent={handleLogout}
+              />
+            </div>
           </div>
         </div>
-        <div>
-          <Search />
-        </div>
-        <hr></hr>
-        <h3 className="save-recipes-heading">Saved Recipes</h3>
-        <div className="saved-item-list">
-          {savedRecipes.map(
-            ({ spoonacularRecipeId, title, image, imageType }) => {
-              return (
-                <Recipe
-                  imageType={imageType}
-                  title={title}
-                  imageUrl={image}
-                  id={spoonacularRecipeId}
-                  className="saved-item"
-                />
-              );
-            }
-          )}
-        </div>
+        <div className="App">
+          <div>
+            <Search />
+          </div>
+          <hr></hr>
+          <h3 className="save-recipes-heading">Saved Recipes</h3>
+          <div className="saved-item-list">
+            {savedRecipes.map(
+              ({ spoonacularRecipeId, title, image, imageType }) => {
+                return (
+                  <Recipe
+                    imageType={imageType}
+                    title={title}
+                    imageUrl={image}
+                    id={spoonacularRecipeId}
+                    className="saved-item"
+                  />
+                );
+              }
+            )}
+          </div>
 
-        <br></br>
-      </div>
+          <br></br>
+        </div>
+      </>
     );
   } else {
     return <UnauthorizedPage />;
