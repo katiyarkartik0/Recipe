@@ -1,4 +1,4 @@
-import { ENDPOINT } from "../constants";
+import ENDPOINT from "../constants";
 
 export const userLogin = async (userCredentials) =>
   await fetch(`${ENDPOINT}/api/auth/login`, {

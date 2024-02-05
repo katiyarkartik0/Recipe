@@ -1,4 +1,4 @@
-import { ENDPOINT } from "constants";
+import ENDPOINT from "../constants";
 
 export const getRecipes = async ({ accessToken, preferences }) =>
   await fetch(`${ENDPOINT}/api/recipe/recipes`, {

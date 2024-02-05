@@ -1,4 +1,4 @@
-import { ENDPOINT } from "constants";
+import ENDPOINT from "../constants";
 
 export const destroyAccessToken = async ({ accessToken }) =>
   await fetch(`${ENDPOINT}/api/accessToken/destroy`, {
